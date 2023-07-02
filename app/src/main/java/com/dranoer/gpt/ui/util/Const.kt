@@ -1,0 +1,9 @@
+package com.dranoer.gpt.ui.util
+
+object Const {
+
+    // Screens
+    const val OVERVIEW_SCREEN = "overview"
+    const val DETAIL_SCREEN = "detail"
+    const val DETAIL_ID = "detailId"
+}
