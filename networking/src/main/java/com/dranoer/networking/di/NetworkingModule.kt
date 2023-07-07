@@ -1,9 +1,6 @@
 package com.dranoer.gpt.networking.di
 
-import com.dranoer.gpt.networking.PagingSource
 import com.dranoer.gpt.networking.WebService
-import com.dranoer.gpt.networking.mapper.ArtMapper
-import com.dranoer.gpt.networking.mapper.DetailMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +15,7 @@ import java.util.concurrent.TimeUnit
 @InstallIn(SingletonComponent::class)
 object NetworkingModule {
 
-    private const val BASE_URL = "https://www.rijksmuseum.nl/api/nl/"
+    private const val BASE_URL = ""
     private const val NETWORK_REQUEST_TIMEOUT_SECONDS = 15L
 
     @Provides
@@ -45,19 +42,4 @@ object NetworkingModule {
     @Provides
     fun provideWebService(retrofit: Retrofit): WebService =
         retrofit.create(WebService::class.java)
-
-    @Provides
-    fun provideArtMapper(): ArtMapper = ArtMapper()
-
-    @Provides
-    fun provideDetailMapper(): DetailMapper = DetailMapper()
-
-    @Provides
-    fun providePagingSource(
-        service: WebService,
-        query: String,
-        artMapper: ArtMapper
-    ): PagingSource {
-        return PagingSource(service, query, artMapper)
-    }
 }
